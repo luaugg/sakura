@@ -16,6 +16,8 @@ import java.util.Set;
  */
 public interface CommandInfo {
     /**
+     * Name of the command; this is what users type when invoking a command.
+     *
      * @return <b>non-null</b> name of the command.
      */
     @Nonnull
@@ -23,6 +25,8 @@ public interface CommandInfo {
     String name();
 
     /**
+     * Description of the command.
+     *
      * @return <b>possibly-null</b> command description.
      */
     @Nullable
@@ -30,6 +34,8 @@ public interface CommandInfo {
     String description();
 
     /**
+     * Usage of the command.
+     *
      * @return <b>possibly-null</b> command usage.
      */
     @Nullable
@@ -37,21 +43,27 @@ public interface CommandInfo {
     String usage();
 
     /**
-     * @return <b>non-null</b> set containing permissions the bot requires - empty if none.
+     * Immutable set reflecting the permissions the bot needs to execute this command - empty if none.
+     *
+     * @return <b>non-null</b> bot permissions set.
      */
     @Nonnull
     @CheckReturnValue
     Set<Permission> requiredBotPermissions();
 
     /**
-     * @return <b>non-null</b> set containing permissions the message author requires - empty if none.
+     * Immutable set reflecting the permissions the user needs to invoke this command - empty if none.
+     *
+     * @return <b>non-null</b> user permissions set.
      */
     @Nonnull
     @CheckReturnValue
     Set<Permission> requiredUserPermissions();
 
     /**
-     * @return <b>non-null</b> command method; this is the method a command will execute.
+     * The method a command invokes when executed. Should ideally not be touched outside of the command handler.
+     *
+     * @return <b>non-null</b> command method; this is the method a command will invoke.
      */
     @Nonnull
     @CheckReturnValue
